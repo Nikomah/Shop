@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index page</title>
+    <script
+          src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+          crossorigin="anonymous">
+    </script>
+
+
+</head>
+<body>
+    {{ message }}<br>
+    <button id="connect_button">Connect with socket</button>
+    <input type="text" id="message_text"/>
+    <button id="send_message_button">Send message to server by web-socket</button>
+
+    <script>
+        var ws;
+        $('#connect_button').click(function() {
+            ws = new WebSocket('ws://localhost:8000/store');
+            ws.onmessage = function(event) {
+                console.log(event.data);
+            }
+        });
+        $('#send_message_button').click(function() {
+            var message = ($('#message_text').val());
+            ws.send(JSON.stringify({'message': message}));
+            console.log(message)
+        });
+    </script>
+
+</body>
+</html>
