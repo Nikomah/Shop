@@ -35,6 +35,7 @@ class Product(models.Model):
     quantity = models.IntegerField(verbose_name='Количество', default=0)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
 
     @property
     def image_tag(self):

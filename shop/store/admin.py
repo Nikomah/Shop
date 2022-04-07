@@ -21,7 +21,7 @@ class SubcategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'article', 'name', 'price', 'quantity', 'image_tag', 'subcategory']
-    list_editable = ['article', 'name', 'price', 'quantity', 'subcategory']
+    list_display = ['pk', 'article', 'name', 'price', 'quantity', 'image_tag', 'subcategory', 'category']
+    list_editable = ['article', 'name', 'price', 'quantity']
     ordering = ['subcategory']
     list_display_links = None
