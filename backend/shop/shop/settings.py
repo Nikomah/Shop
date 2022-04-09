@@ -27,7 +27,7 @@ SECRET_KEY = SK
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,12 +41,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'drf_yasg',
-    'store.apps.StoreConfig',
     'rest_framework',
-    'channels'
+    'channels',
+    'django_filters',
+    'webpack_loader',
+    'corsheaders',
+
+    'store.apps.StoreConfig',
+]
+MIDDLEWARE_CLASSES = [
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,6 +66,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'shop.urls'
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:4200',
+    'http://localhost:8000',
+]
 
 TEMPLATES = [
     {
@@ -139,7 +153,17 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
         ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 20
+    'PAGE_SIZE': 20,
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
 }
 
 DATA_DIR = os.path.join(BASE_DIR, '../init_data')
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'angular/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'static', 'webpack-stats-angular.json'),
+    }
+}

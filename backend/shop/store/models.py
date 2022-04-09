@@ -34,8 +34,9 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Цена', null=True)
     quantity = models.IntegerField(verbose_name='Количество', default=0)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
-    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE, null=True, blank=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    subcategory = models.ForeignKey(
+        Subcategory, on_delete=models.CASCADE, verbose_name='Подкатегория', null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория', null=True, blank=True)
 
     @property
     def image_tag(self):

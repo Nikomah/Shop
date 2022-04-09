@@ -3,6 +3,6 @@ __pycash__
 .pytest_cash
 venv/
 .idea/
-shop/db.sqlite3
-shop/shop/env.py
-/init_data/
+backend/shop/db.sqlite3
+backend/shop/shop/env.py
+backend/init_data/
