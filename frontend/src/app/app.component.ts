@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../environments/environment';
+
 
 @Component({
   selector: 'app-root',
@@ -7,14 +9,19 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'frontend'; name = 'Denis! ';  productList: any = {};
-  constructor(private http: HttpClient) { }
+  title = 'frontend';
+  name = 'Denis! ';
+  productList: any = {results: []};
+  constructor(private http: HttpClient,
+                                       )
+               {this.getProductList(); }
 
   getProductList() {
-  this.http.get('http://127.0.0.1:8000/api/v1/product').subscribe( (res: any) => {
+  this.http.get(`${environment.backEndUrl}/api/v1/product/`).subscribe( (res: any) => {
     this.productList = res;
-      });
-  console.log(this.productList);
 
+    });
+//   console.log(this.productList.results);
   }
 }
+

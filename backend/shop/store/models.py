@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 
+from shop.settings import BACKEND_URL
+
 
 class Category(models.Model):
     objects = models.Manager
@@ -40,7 +42,11 @@ class Product(models.Model):
 
     @property
     def image_tag(self):
-        return mark_safe('<img src=%s />' % self.image.url)
+        return mark_safe('<img src=%s />' % (BACKEND_URL + self.image.url))
+
+    @property
+    def image_url(self):
+        return BACKEND_URL + self.image.url
 
     def __str__(self):
         return f'{self.article}, {self.name}, {str(self.price)}, {str(self.quantity)}'
