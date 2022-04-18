@@ -4,7 +4,7 @@ from .models import Category, Subcategory, Product
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name']
+    list_display = ['id', 'name', 'image_tag']
     list_editable = ['name']
     ordering = ['id']
 
@@ -13,7 +13,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Subcategory)
 class SubcategoryAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'category']
+    list_display = ['id', 'name', 'category', 'image_tag']
     list_editable = ['name']
     list_filter = ['category']
     ordering = ['name']

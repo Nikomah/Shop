@@ -5,19 +5,19 @@ from .models import Product, Category, Subcategory
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['name']
 
 
 class SubcategorySerializer(serializers.ModelSerializer):
-    category = CategorySerializer()
 
     class Meta:
         model = Subcategory
-        fields = '__all__'
+        fields = ['name']
 
 
 class ProductSerializer(serializers.ModelSerializer):
     subcategory = SubcategorySerializer()
+    category = CategorySerializer()
 
     class Meta:
         model = Product

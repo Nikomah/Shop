@@ -93,7 +93,7 @@ class Command(BaseCommand):
         Subcategory.objects.all().delete()
         Category.objects.all().delete()
         try:
-            shutil.rmtree('%s/media/images' % BASE_DIR)
+            shutil.rmtree('%s/media/prod_images' % BASE_DIR)
         except:
             pass
         # достаём страницу из вэб и парсим
