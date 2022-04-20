@@ -20,6 +20,10 @@ class Category(models.Model):
     def image_tag(self):
         return mark_safe('<img src=%s />' % (BACKEND_URL + self.image.url))
 
+    @property
+    def image_url(self):
+        return BACKEND_URL + self.image.url
+
 
 class Subcategory(models.Model):
     objects = models.Manager
@@ -38,8 +42,12 @@ class Subcategory(models.Model):
     def image_tag(self):
         try:
             return mark_safe('<img src=%s />' % (BACKEND_URL + self.image.url))
-        except:
+        except ValueError:
             return mark_safe('<img src=%s />' % (BACKEND_URL + '/media/subcat_images/klei.png'))
+
+    @property
+    def image_url(self):
+        return BACKEND_URL + self.image.url
 
 
 class Product(models.Model):

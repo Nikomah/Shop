@@ -18,7 +18,7 @@ class Command(BaseCommand):
                   '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9'
     }
 
-    def get_product(self, prod_url, subcategory: int):
+    def get_product(self, prod_url, subcategory: int, category: int):
         resp = requests.get(prod_url, headers=self.header)
         if resp.status_code == 200:
             prod_page = BeautifulSoup(resp.text, 'html.parser')
@@ -38,6 +38,7 @@ class Command(BaseCommand):
                 with open('%s/tmp.png' % BASE_DIR, 'rb') as image_file:
                     prod.image.save('prod.png', File(image_file), save=True)
                 prod.subcategory_id = subcategory
+                prod.category_id = category
                 for product_p in products_price:
                     if not prod.price:
                         try:
@@ -70,7 +71,7 @@ class Command(BaseCommand):
                     subcat.category_id = category
                     subcat.save()
                     prod_url = li.a['href']
-                    self.get_product(self.url+prod_url, subcat.pk)
+                    self.get_product(self.url+prod_url, subcat.pk, category)
 
     def get_category(self):
         resp = requests.get(self.url, headers=self.header)

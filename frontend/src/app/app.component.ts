@@ -10,18 +10,22 @@ import { environment } from './../environments/environment';
 })
 export class AppComponent {
   title = 'frontend';
-  name = 'Denis! ';
-  productList: any = {results: []};
+  categoryList: any = {results: []};
   constructor(private http: HttpClient,
                                        )
-               {this.getProductList(); }
+               {this.getCategoryList();}
 
-  getProductList() {
-  this.http.get(`${environment.backEndUrl}/api/v1/product/`).subscribe( (res: any) => {
-    this.productList = res;
-
+  getCategoryList() {
+  this.http.get(`${environment.backEndUrl}/api/v1/category/`).subscribe( (res: any) => {
+    this.categoryList = res;
     });
-//   console.log(this.productList.results);
+
+
+//   getCategoryList() {
+//   this.http.get(`${environment.backEndUrl}/api/v1/category/`).subscribe( (res: any) => {
+//     this.categoryList = res;
+//     });
+//   console.log(this.categoryList.results);
   }
 }
 

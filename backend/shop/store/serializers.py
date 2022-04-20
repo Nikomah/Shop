@@ -5,14 +5,14 @@ from .models import Product, Category, Subcategory
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['name']
+        fields = ['name', 'image_url']
 
 
 class SubcategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Subcategory
-        fields = ['name']
+        fields = ['name', 'image_url']
 
 
 class ProductSerializer(serializers.ModelSerializer):
