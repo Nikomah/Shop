@@ -3,9 +3,19 @@ from .models import Product, Category, Subcategory
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    subcategory = serializers.SerializerMethodField()
+
+    def get_subcategory(self, obj):
+        sub_list = []
+        for item in Category.objects.all():
+            sub = item.subcategory_set.all()
+            for i in sub:
+                sub_list.append(SubcategorySerializer(i).data)
+            return sub_list
+
     class Meta:
         model = Category
-        fields = ['name', 'image_url']
+        fields = ['name', 'image_url', 'subcategory']
 
 
 class SubcategorySerializer(serializers.ModelSerializer):

@@ -20,12 +20,6 @@ export class AppComponent {
     this.categoryList = res;
     });
 
-
-//   getCategoryList() {
-//   this.http.get(`${environment.backEndUrl}/api/v1/category/`).subscribe( (res: any) => {
-//     this.categoryList = res;
-//     });
-//   console.log(this.categoryList.results);
-  }
-}
+    }
+    }
 
