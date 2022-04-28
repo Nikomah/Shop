@@ -10,7 +10,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getCategoryList() {
-    return this.http.get(`${environment.backEndUrl}/api/v1/category/`)
+  getCategoryList(pars: any) {
+    if(pars.hasOwnProperty('cat')) {
+      return this.http.get(`${environment.backEndUrl}/api/v1/category/${pars['cat']}/`)
+      } else {
+            return this.http.get(`${environment.backEndUrl}/api/v1/category/`);
+            }
+
   }
 }

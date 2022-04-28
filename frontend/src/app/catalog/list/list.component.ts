@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from './../../../environments/environment';
 import { ApiService } from './../../api.service';
 
 @Component({
@@ -8,15 +6,46 @@ import { ApiService } from './../../api.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
+// export class ListComponent implements OnInit {
+//     categoryList: any = {results: []};
+//     constructor(
+//     private apiService: ApiService,
+//     private route: ActivatedRoute
+//     ) {
+//     this.route.params.subscribe(params => {
+//         if(params.hasOwnProperty('catId')) {
+//           console.log(`category ${params['catId']}`);
+//           this.getCategoryList({cat: params['catId']});
+//         } else {
+//             this.getCategoryList({});
+//         }
+//       } )
+//
+//      }
+//
+//   ngOnInit(): void {
+//   }
+//
+//   getCategoryList(pars: any) {
+//    this.apiService.getCategoryList(pars).subscribe((res: any) => {
+//     this.categoryList = res;
+//     });
+//   }
+// }
+
+
 export class ListComponent implements OnInit {
-  categoryList: any = {results: []};
-  constructor(private http: HttpClient, private apiService: ApiService) { this.getCategoryList(); }
+    categoryList: any = {results: []};
+    constructor(
+    private apiService: ApiService
+    )
+    { this.getCategoryList({}) }
 
   ngOnInit(): void {
   }
 
-  getCategoryList() {
-   this.apiService.getCategoryList().subscribe((res: any) => {
+  getCategoryList(pars: any) {
+   this.apiService.getCategoryList(pars).subscribe((res: any) => {
     this.categoryList = res;
     });
   }
