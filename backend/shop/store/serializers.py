@@ -18,16 +18,22 @@ class CategorySerializer(serializers.ModelSerializer):
 
 
 class SubcategorySerializer(serializers.ModelSerializer):
+    product = serializers.SerializerMethodField()
+
+    def get_product(self, obj):
+        prod_list = []
+        prod = obj.product_set.all()
+        for i in prod:
+            prod_list.append(ProductSerializer(i).data)
+        return prod_list
 
     class Meta:
         model = Subcategory
-        fields = ['id', 'name', 'image_url']
+        fields = ['id', 'name', 'image_url', 'product']
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    subcategory = SubcategorySerializer()
-    category = CategorySerializer()
 
     class Meta:
         model = Product
-        fields = ['name', 'price', 'quantity', 'image_url', 'category', 'subcategory']
+        fields = ['id', 'name', 'price', 'quantity', 'image_url']

@@ -1,27 +1,5 @@
 
 <style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
   .content {
     display: flex;
     margin: 100px auto 32px;
@@ -71,70 +49,46 @@
     display: flex;
     align-items: center;
   }
-
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link) ,
-    .terminal {
-      width: 100%;
-    }
-
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
-
-   #sidebar {
-    fxLayout="row wrap";
-    fxLayoutGap="10px";
-    width: 300px;
-    }
-
 </style>
 
 <div class="content" role="main">
 
 
-          <div id="sidebar">
+          <div id="sidebar" style="padding: 10px; min-width: 300px; max-width: 300px;">
             <ul class="side" *ngFor="let category of categoryList.results" >
               <li><a [routerLink]="['/catalog/cat', category.id]">{{ category.name }}</a></li>
             </ul>
           </div>
 
+            <div [ngSwitch]="list">
+              <div id="app-center"
+               *ngSwitchCase="'category'"
+               fxFlex="100"
+               fxLayout="row wrap"
+               fxLayoutGap="10px"
+               fxLayoutAlign="left start">
 
-          <div id="app-center"
-           style="[display]='visionCat'"
-           fxFlex="100"
-           fxLayout="row wrap"
-           fxLayoutGap="10px"
-           fxLayoutAlign="left start">
+                  <mat-card class="example-card" *ngFor="let category of categoryList.results">
+                    <mat-card-header style="height: 60px;">
+                      <div mat-card-avatar class="example-header-image" style="width: 100px;">
+                        <mat-card-title>
+                          <a [routerLink]="['/catalog/cat', category.id]">{{ category.name }}</a>
+                        </mat-card-title>
+                      </div>
+                    </mat-card-header>
 
-              <mat-card class="example-card" *ngFor="let category of categoryList.results">
-                <mat-card-header style="height: 60px;">
-                  <div mat-card-avatar class="example-header-image" style="width: 150px;">
-                    <mat-card-title>
-                      <a [routerLink]="['/catalog/cat', category.id]">{{ category.name }}</a>
-                    </mat-card-title>
-                  </div>
-                </mat-card-header>
+                      <img src="{{ category.image_url }}"/>
 
-                  <img src="{{ category.image_url }}"/>
+                    <mat-card-content class="mat-card-content" style="width: 250px; height: 150px;">
+                      <span *ngFor="let sub of category.subcategory"><a [routerLink]="['/catalog/prod', sub.id]">{{ sub.name }}, </a></span>
+                    </mat-card-content>
 
-                <mat-card-content class="mat-card-content" style="max-width: 220px; height: 150px;">
-                  <span *ngFor="let sub of category.subcategory"><a href="#">{{ sub.name }}, </a></span>
-                </mat-card-content>
+                  </mat-card>
+              </div>
 
-                <mat-card-actions>
-                  <button mat-button>LIKE</button>
-                  <button mat-button>SHARE</button>
-                </mat-card-actions>
-              </mat-card>
-
-          </div>
+              <app-subcategory *ngSwitchCase="'subcategory'"></app-subcategory>
+              <app-product *ngSwitchCase="'product'"></app-product>
+            </div>
 
 
 </div>

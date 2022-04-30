@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from './../environments/environment';
 
 
 @Component({
@@ -10,16 +8,7 @@ import { environment } from './../environments/environment';
 })
 export class AppComponent {
   title = 'frontend';
-  categoryList: any = {results: []};
-  constructor(private http: HttpClient,
-                                       )
-               {this.getCategoryList();}
+  constructor()  {}
 
-  getCategoryList() {
-  this.http.get(`${environment.backEndUrl}/api/v1/category/`).subscribe( (res: any) => {
-    this.categoryList = res;
-    });
-
-    }
     }
 

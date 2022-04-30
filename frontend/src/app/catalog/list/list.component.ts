@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -14,7 +15,6 @@ import { ApiService } from './../../api.service';
 //     ) {
 //     this.route.params.subscribe(params => {
 //         if(params.hasOwnProperty('catId')) {
-//           console.log(`category ${params['catId']}`);
 //           this.getCategoryList({cat: params['catId']});
 //         } else {
 //             this.getCategoryList({});
@@ -36,10 +36,17 @@ import { ApiService } from './../../api.service';
 
 export class ListComponent implements OnInit {
     categoryList: any = {results: []};
+    list: string = 'category'
     constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
+    private route: ActivatedRoute
     )
-    { this.getCategoryList({}) }
+    { this.route.params.subscribe(params => {
+        if(params.hasOwnProperty('catId')) { this.list = 'subcategory'}
+        else if(params.hasOwnProperty('prodId')) { this.list = 'product'}
+        });
+
+      this.getCategoryList({}); }
 
   ngOnInit(): void {
   }

@@ -16,6 +16,9 @@ export class ApiService {
       } else {
             return this.http.get(`${environment.backEndUrl}/api/v1/category/`);
             }
-
   }
+
+  getProductList(pars: any) {
+    return this.http.get(`${environment.backEndUrl}/api/v1/subcategory/${pars['prod']}/`)
+    }
 }

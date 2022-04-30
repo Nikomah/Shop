@@ -70,7 +70,7 @@ class Product(models.Model):
         return BACKEND_URL + self.image.url
 
     def __str__(self):
-        return f'{self.article}, {self.name}, {str(self.price)}, {str(self.quantity)}'
+        return f'{self.id}, {self.name}, {str(self.price)}, {str(self.quantity)}'
 
     class Meta:
         verbose_name = 'Товары'

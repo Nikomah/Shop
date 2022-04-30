@@ -10,7 +10,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SubcategoryComponent implements OnInit {
   subcategoryList: any = {results: []};
-  categoryList: any = {results: []}
 
 
   constructor(
@@ -23,18 +22,14 @@ export class SubcategoryComponent implements OnInit {
           this.getCategoryList({cat: params['catId']});
 
       } );
-      this.getCategoryList({});
    }
 
   ngOnInit(): void {
   }
 
     getCategoryList(pars: any) {
-   this.apiService.getCategoryList(pars).subscribe((res: any) => { if(pars.cat) {
-    this.subcategoryList = res} else {this.categoryList = res}
-    });
+   this.apiService.getCategoryList(pars).subscribe((res: any) => {
+    this.subcategoryList = res});
   }
-
-
 
 }
