@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
   productList: any = {results: []};
+  isProd: boolean = true;
 
   constructor(
     private apiService: ApiService,
@@ -20,12 +21,15 @@ export class ProductComponent implements OnInit {
       });
      }
 
+
+
   ngOnInit(): void {
   }
 
   getProductList(pars: any) {
     this.apiService.getProductList(pars).subscribe((res: any) => {
-      this.productList = res
+    if (res.product.length != 0) {this.productList = res} else {this.isProd = false}
+
     });
   }
 

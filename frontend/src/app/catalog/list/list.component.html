@@ -83,7 +83,8 @@
                       <img src="{{ category.image_url }}"/>
 
                     <mat-card-content class="mat-card-content" style="width: 250px; height: 150px;">
-                      <span *ngFor="let sub of category.subcategory"><a [routerLink]="['/catalog/prod', sub.id]">{{ sub.name }}, </a></span>
+                      <span *ngFor="let sub of category.subcategory"><a [routerLink]="['/catalog/prod', sub.id]">
+                        {{ sub.name }}, </a></span>
                     </mat-card-content>
 
                   </mat-card>
