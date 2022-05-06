@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
 
   getProductList(pars: any) {
     this.apiService.getProductList(pars).subscribe((res: any) => {
-    if (res.product.length != 0) {this.productList = res} else {this.isProd = false}
+    if (res.product.length != 0 || res.subcat2.length != 0) {this.productList = res} else {this.isProd = false}
 
     });
   }

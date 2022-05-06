@@ -14,3 +14,4 @@ class SubcategoryViewSet(viewsets.ModelViewSet):
     serializer_class = SubcategorySerializer
     permission_classes = (permissions.AllowAny,)
     filter_class = SubcategoryFilter
+    pagination_class = None

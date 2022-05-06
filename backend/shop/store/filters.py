@@ -5,12 +5,11 @@ from store.models import Product, Subcategory
 
 class ProductFilter(filters.FilterSet):
     subcategory = filters.NumberFilter()
-    category = filters.NumberFilter()
     name = filters.CharFilter(lookup_expr='contains')
 
     class Meta:
         model = Product
-        fields = ['category', 'name']
+        fields = ['name']
 
 
 class SubcategoryFilter(filters.FilterSet):

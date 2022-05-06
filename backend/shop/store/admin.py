@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Subcategory, Product
+from .models import Category, Subcategory, Subcat2, Subcat3, Subcat4, Product
 
 
 @admin.register(Category)
@@ -8,8 +8,6 @@ class CategoryAdmin(admin.ModelAdmin):
     list_editable = ['name']
     ordering = ['id']
 
-    list_display_links = None
-
 
 @admin.register(Subcategory)
 class SubcategoryAdmin(admin.ModelAdmin):
@@ -17,13 +15,33 @@ class SubcategoryAdmin(admin.ModelAdmin):
     list_editable = ['name']
     list_filter = ['category']
     ordering = ['name']
-    list_display_links = None
+
+
+@admin.register(Subcat2)
+class Subcat2Admin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'image_tag', 'subcategory']
+    list_editable = ['name']
+    ordering = ['id']
+
+
+@admin.register(Subcat3)
+class Subcat3Admin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'image_tag']
+    list_editable = ['name']
+    ordering = ['name']
+
+
+@admin.register(Subcat4)
+class Subcat4Admin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'image_tag']
+    list_editable = ['name']
+    ordering = ['name']
 
 
 @admin.register(Product)
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = ['pk', 'article', 'name', 'price', 'quantity', 'image_tag', 'image_url', 'subcategory', 'category']
+    list_display = ['pk', 'article', 'name', 'price', 'quantity', 'image_tag', 'image_url', 'subcategory', 'subcat2',
+                    'subcat3', 'subcat4']
     list_editable = ['article', 'name', 'price', 'quantity']
-    list_filter = ['category', 'subcategory']
+    list_filter = ['subcategory', 'subcat2', 'subcat3', 'subcat4']
     ordering = ['subcategory']
-    list_display_links = None

@@ -36,7 +36,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class ListComponent implements OnInit {
     categoryList: any = {results: []};
-    list: string = 'category'
+    list = 'category'
     constructor(
     private apiService: ApiService,
     private route: ActivatedRoute
