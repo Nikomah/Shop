@@ -61,7 +61,7 @@ class Subcat2(models.Model):
         verbose_name_plural = 'Подкатегории 2'
 
     def __str__(self):
-        return self.name
+        return f'{self.name}, {self.subcategory}'
 
     @property
     def image_tag(self):
@@ -76,14 +76,14 @@ class Subcat3(models.Model):
     objects = models.Manager
     name = models.CharField(max_length=255, verbose_name='Наименование')
     image = models.ImageField(upload_to='subcat3_images')
-    subcat2 = models.ForeignKey(Subcat2, on_delete=models.CASCADE, verbose_name='Подкатегория',null=True)
+    subcat2 = models.ForeignKey(Subcat2, on_delete=models.CASCADE, verbose_name='Подкатегория 2', null=True)
 
     class Meta:
         verbose_name = 'Подкатегории 3'
         verbose_name_plural = 'Подкатегории 3'
 
     def __str__(self):
-        return self.name
+        return f'{self.name}, {self.subcat2}'
 
     @property
     def image_tag(self):
@@ -98,14 +98,14 @@ class Subcat4(models.Model):
     objects = models.Manager
     name = models.CharField(max_length=255, verbose_name='Наименование')
     image = models.ImageField(upload_to='subcat4_images')
-    subcat3 = models.ForeignKey(Subcat3, on_delete=models.CASCADE, verbose_name='Подкатегория', null=True)
+    subcat3 = models.ForeignKey(Subcat3, on_delete=models.CASCADE, verbose_name='Подкатегория 3', null=True)
 
     class Meta:
         verbose_name = 'Подкатегории 4'
         verbose_name_plural = 'Подкатегории 4'
 
     def __str__(self):
-        return self.name
+        return f'{self.name}, {self.subcat3}'
 
     @property
     def image_tag(self):

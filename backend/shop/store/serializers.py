@@ -44,24 +44,69 @@ class SubcategorySerializer(serializers.ModelSerializer):
 
 
 class Subcat2Serializer(serializers.ModelSerializer):
+    product = serializers.SerializerMethodField()
+    subcat3 = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_product(obj):
+        prod_list = []
+        prod = obj.product_set.all()
+        for i in prod:
+            prod_list.append(ProductSerializer(i).data)
+        return prod_list
+
+    @staticmethod
+    def get_subcat3(obj):
+        subcat3_list = []
+        subcat3 = obj.subcat3_set.all()
+        for i in subcat3:
+            subcat3_list.append(Subcat3Serializer(i).data)
+        return subcat3_list
 
     class Meta:
         model = Subcat2
-        fields = ['id', 'name', 'image_url']
+        fields = ['id', 'name', 'image_url', 'product', 'subcat3']
 
 
 class Subcat3Serializer(serializers.ModelSerializer):
+    product = serializers.SerializerMethodField()
+    subcat4 = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_product(obj):
+        prod_list = []
+        prod = obj.product_set.all()
+        for i in prod:
+            prod_list.append(ProductSerializer(i).data)
+        return prod_list
+
+    @staticmethod
+    def get_subcat4(obj):
+        subcat4_list = []
+        subcat4 = obj.subcat4_set.all()
+        for i in subcat4:
+            subcat4_list.append(Subcat4Serializer(i).data)
+        return subcat4_list
 
     class Meta:
         model = Subcat3
-        fields = ['id', 'name', 'image_url']
+        fields = ['id', 'name', 'image_url', 'product', 'subcat4']
 
 
 class Subcat4Serializer(serializers.ModelSerializer):
+    product = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_product(obj):
+        prod_list = []
+        prod = obj.product_set.all()
+        for i in prod:
+            prod_list.append(ProductSerializer(i).data)
+        return prod_list
 
     class Meta:
         model = Subcat4
-        fields = ['id', 'name', 'image_url']
+        fields = ['id', 'name', 'image_url', 'product']
 
 
 class ProductSerializer(serializers.ModelSerializer):

@@ -16,9 +16,23 @@ export class ApiService {
       } else {
             return this.http.get(`${environment.backEndUrl}/api/v1/category/`);
             }
-  }
+  };
 
   getProductList(pars: any) {
     return this.http.get(`${environment.backEndUrl}/api/v1/subcategory/${pars['prod']}/`)
-    }
+    };
+
+  getSubcat2(pars: any) {
+    return this.http.get(`${environment.backEndUrl}/api/v1/subcat2/${pars['subcat2']}/`)
+    };
+
+  getSubcat3(pars: any) {
+    return this.http.get(`${environment.backEndUrl}/api/v1/subcat3/${pars['subcat3']}/`)
+    };
+
+  getSubcat4(pars: any) {
+    return this.http.get(`${environment.backEndUrl}/api/v1/subcat4/${pars['subcat4']}/`)
+    };
+
+
 }

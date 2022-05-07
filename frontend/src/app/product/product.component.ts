@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  productList: any = {results: []};
+  productList: any = [];
   isProd: boolean = true;
 
   constructor(

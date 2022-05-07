@@ -8,10 +8,9 @@ from shop.settings import BASE_DIR
 from store.models import Product, Subcategory, Subcat2, Subcat3
 from bs4 import BeautifulSoup
 
-SUB4_URLS = []
-
 
 class Command(BaseCommand):
+    SUB4_DICT = {}
     url = 'https://maloni.ru'
     header = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
@@ -50,6 +49,7 @@ class Command(BaseCommand):
             subcat2s = catalog_list.find_all('li')
             for li in subcat2s:
                 subcat3_url = li.a['href']
+                subcat2 = Subcat2.objects.get(name=li.a['title'])
                 subcat2 = Subcat2()
                 subcat2.name = li.a['title']
                 image_url = self.url + li.img['src']
@@ -103,7 +103,6 @@ class Command(BaseCommand):
         subcat3s = catalog_list.find_all('li')
         for li in subcat3s:
             subcat4_url = li.a['href']
-            SUB4_URLS.append(subcat4_url)
             subcat3 = Subcat3()
             subcat3.name = li.a['title']
             image_url = self.url + li.img['src']
@@ -112,5 +111,5 @@ class Command(BaseCommand):
                 shutil.copyfileobj(img_response.raw, out_file)
             with open('%s/tmp.png' % BASE_DIR, 'rb') as image_file:
                 subcat3.image.save('subcat3.png', File(image_file), save=True)
-            subcat3.subcategory_id = subcat2
+            subcat3.subcat2_id = subcat2
             subcat3.save()

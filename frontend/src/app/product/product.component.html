@@ -46,11 +46,11 @@
                     <mat-card-header style="height: 100px; width: 200px;">
                       <div mat-card-avatar class="example-header-image" style="width: 200px; height: 80px;">
                         <mat-card-title>
-                         <a href="#">{{ item.name }}</a>
+                         <a [routerLink]="['/catalog/subcat2', item.id]">{{ item.name }}</a>
                         </mat-card-title>
                       </div>
                     </mat-card-header>
-                      <a href="#"><img src="{{ item.image_url }}"/></a>
+                      <a [routerLink]="['/catalog/subcat2', item.id]"><img src="{{ item.image_url }}"/></a>
                     <mat-card-content class="mat-card-content" style="width: 250px; ">
 
                     </mat-card-content>

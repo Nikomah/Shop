@@ -26,14 +26,14 @@ class Subcat2Admin(admin.ModelAdmin):
 
 @admin.register(Subcat3)
 class Subcat3Admin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'image_tag']
+    list_display = ['id', 'name', 'image_tag', 'subcat2']
     list_editable = ['name']
     ordering = ['name']
 
 
 @admin.register(Subcat4)
 class Subcat4Admin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'image_tag']
+    list_display = ['id', 'name', 'image_tag', 'subcat3']
     list_editable = ['name']
     ordering = ['name']
 

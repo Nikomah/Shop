@@ -35,7 +35,7 @@ import { ActivatedRoute } from '@angular/router';
 
 
 export class ListComponent implements OnInit {
-    categoryList: any = {results: []};
+    categoryList: any = [];
     list = 'category'
     constructor(
     private apiService: ApiService,
@@ -44,6 +44,9 @@ export class ListComponent implements OnInit {
     { this.route.params.subscribe(params => {
         if(params.hasOwnProperty('catId')) { this.list = 'subcategory'}
         else if(params.hasOwnProperty('prodId')) { this.list = 'product'}
+        else if(params.hasOwnProperty('sub2Id')) { this.list = 'subcat2'}
+        else if(params.hasOwnProperty('sub3Id')) { this.list = 'subcat3'}
+        else if(params.hasOwnProperty('sub4Id')) { this.list = 'subcat4'}
         });
 
       this.getCategoryList({}); }

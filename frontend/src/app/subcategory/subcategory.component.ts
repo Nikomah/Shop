@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./subcategory.component.scss']
 })
 export class SubcategoryComponent implements OnInit {
-  subcategoryList: any = {results: []};
+  subcategoryList: any = [];
 
 
   constructor(
