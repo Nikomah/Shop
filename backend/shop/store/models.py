@@ -14,7 +14,7 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
     def __str__(self):
-        return self.name
+        return f'{self.name}, {self.pk}'
 
     @property
     def image_tag(self):
@@ -28,7 +28,7 @@ class Category(models.Model):
 class Subcategory(models.Model):
     objects = models.Manager
     name = models.CharField(max_length=255, verbose_name='Подкатегория')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True,)
     image = models.ImageField(upload_to='subcat_images/', null=True, blank=True)
 
     class Meta:
@@ -36,7 +36,7 @@ class Subcategory(models.Model):
         verbose_name_plural = 'Подкатегории'
 
     def __str__(self):
-        return self.name
+        return f'{self.pk}, {self.name}, {self.category}, {self.category_id}'
 
     @property
     def image_tag(self):
@@ -61,7 +61,7 @@ class Subcat2(models.Model):
         verbose_name_plural = 'Подкатегории 2'
 
     def __str__(self):
-        return f'{self.name}, {self.subcategory}'
+        return f'{self.pk}, {self.name}, {self.subcategory}'
 
     @property
     def image_tag(self):
@@ -83,7 +83,7 @@ class Subcat3(models.Model):
         verbose_name_plural = 'Подкатегории 3'
 
     def __str__(self):
-        return f'{self.name}, {self.subcat2}'
+        return f'{self.pk}, {self.name}, {self.subcat2}'
 
     @property
     def image_tag(self):
@@ -105,7 +105,7 @@ class Subcat4(models.Model):
         verbose_name_plural = 'Подкатегории 4'
 
     def __str__(self):
-        return f'{self.name}, {self.subcat3}'
+        return {self.name}
 
     @property
     def image_tag(self):
@@ -142,5 +142,4 @@ class Product(models.Model):
         return BACKEND_URL + self.image.url
 
     def __str__(self):
-        return f'{self.id}, {self.name}, {str(self.price)}, {str(self.quantity)}'
-
+        return f'{self.pk}, {self.name}, {str(self.price)}, {str(self.quantity)}'

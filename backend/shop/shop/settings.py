@@ -31,6 +31,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+INTERNAL_IPS = ['127.0.0.1']
+
 
 # Application definition
 
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'django_filters',
     'webpack_loader',
     'corsheaders',
+    # 'debug_toolbar',
 
     'store.apps.StoreConfig',
 ]
@@ -57,6 +60,7 @@ MIDDLEWARE_CLASSES = [
 
 
 MIDDLEWARE = [
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

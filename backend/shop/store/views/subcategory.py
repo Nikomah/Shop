@@ -6,7 +6,7 @@ from store.models import Subcategory
 from store.serializers import SubcategorySerializer
 
 
-class SubcategoryViewSet(viewsets.ModelViewSet):
+class SubcategoryViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows users to read and modify subcategories
     """

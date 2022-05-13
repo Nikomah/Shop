@@ -6,7 +6,7 @@ from store.models import Product
 from store.serializers import ProductSerializer
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows users to read and modify products
     """

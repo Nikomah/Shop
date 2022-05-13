@@ -1,8 +1,8 @@
 
 <style>
   .mat-card-content a {
-  font-size: 14px;
-  color: #808080;
+  font-size: 16px;
+  color: black;
   text-decoration: underline;
   }
 
@@ -15,8 +15,31 @@
   .mat-card-title a:hover {
   text-decoration: underline;
   }
+        #breadcrumbs a {
+  color: #B8860B;
+  }
+  #breadcrumbs {
+  font-size: 16px;
+  }
+
 
 </style>
+<div fxLayout="column" >
+  <div>
+    <span id="breadcrumbs">
+      <a href="/catalog">Главная </a>
+      <a href="/catalog/cat/{{ productList.breadcrumbs[7] }}">» {{ productList.breadcrumbs[6] }} »</a>
+      <a href="/catalog/prod/{{ productList.breadcrumbs[4] }}"> {{ productList.breadcrumbs[5] }} »</a>
+      <a href="/catalog/subcat2/{{ productList.breadcrumbs[2] }}"> {{ productList.breadcrumbs[3] }} »</a>
+      <a href="/catalog/subcat3/{{ productList.breadcrumbs[0] }}"> {{ productList.breadcrumbs[1] }} »</a>
+      <i> {{ productList.name }}</i>
+    </span>
+  </div>
+  <hr>
+ <div style="font-size:18px; background:rgb(120, 156, 107); color: white; ">
+   <p style="margin: 10px;">{{ productList.name }}</p>
+ </div>
+
     <div *ngIf="isProd; else noProd">
 
           <div id="app-center"
@@ -62,3 +85,4 @@
                     </mat-card-actions>
               </mat-card>
     </ng-template>
+</div>

@@ -1,8 +1,8 @@
 
 <style>
   .mat-card-content a {
-  font-size: 14px;
-  color: #808080;
+  font-size: 16px;
+  color: black;
   text-decoration: underline;
   }
 
@@ -15,8 +15,27 @@
   .mat-card-title a:hover {
   text-decoration: underline;
   }
+  #breadcrumbs a {
+  color: #B8860B;
+  }
+  #breadcrumbs {
+  font-size: 16px;
+  }
 
 </style>
+<div fxLayout="column" >
+  <div>
+    <span id="breadcrumbs">
+      <a href="/catalog">Главная </a>
+      <a href="/catalog/cat/{{ productList.breadcrumbs[1] }}">» {{ productList.breadcrumbs[0] }} »</a>
+      <i> {{ productList.name }}</i>
+    </span>
+  </div>
+  <hr>
+ <div style="font-size:18px; background:rgb(120, 156, 107); color: white; ">
+   <p style="margin: 10px;">{{ productList.name }}</p>
+ </div>
+
     <div *ngIf="isProd; else noProd">
 
           <div id="app-center"
@@ -46,11 +65,11 @@
                     <mat-card-header style="height: 100px; width: 200px;">
                       <div mat-card-avatar class="example-header-image" style="width: 200px; height: 80px;">
                         <mat-card-title>
-                         <a [routerLink]="['/catalog/subcat2', item.id]">{{ item.name }}</a>
+                         <a [routerLink]="['/catalog/subcat2', item[0]]">{{ item[1] }}</a>
                         </mat-card-title>
                       </div>
                     </mat-card-header>
-                      <a [routerLink]="['/catalog/subcat2', item.id]"><img src="{{ item.image_url }}"/></a>
+                      <a [routerLink]="['/catalog/subcat2', item.id]"><img src="{{ item[2] }}"/></a>
                     <mat-card-content class="mat-card-content" style="width: 250px; ">
 
                     </mat-card-content>
@@ -77,3 +96,4 @@
                     </mat-card-actions>
               </mat-card>
     </ng-template>
+</div>

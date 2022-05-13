@@ -10,7 +10,7 @@ class CategorySerializer(serializers.ModelSerializer):
         sub_list = []
         sub = obj.subcategory_set.all()
         for i in sub:
-            sub_list.append(SubcategorySerializer(i).data)
+            sub_list.append([i.name, i.id, i.image_url])
         return sub_list
 
     class Meta:
@@ -21,6 +21,11 @@ class CategorySerializer(serializers.ModelSerializer):
 class SubcategorySerializer(serializers.ModelSerializer):
     product = serializers.SerializerMethodField()
     subcat2 = serializers.SerializerMethodField()
+    breadcrumbs = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_breadcrumbs(obj):
+        return str(Category.objects.get(id=obj.category_id)).split(', ')
 
     @staticmethod
     def get_product(obj):
@@ -35,17 +40,22 @@ class SubcategorySerializer(serializers.ModelSerializer):
         subcat2_list = []
         subcat2 = obj.subcat2_set.all()
         for i in subcat2:
-            subcat2_list.append(Subcat2Serializer(i).data)
+            subcat2_list.append([i.id, i.name, i.image_url])
         return subcat2_list
 
     class Meta:
         model = Subcategory
-        fields = ['id', 'name', 'image_url', 'product', 'subcat2']
+        fields = ['id', 'name', 'image_url', 'product', 'subcat2', 'breadcrumbs']
 
 
 class Subcat2Serializer(serializers.ModelSerializer):
     product = serializers.SerializerMethodField()
     subcat3 = serializers.SerializerMethodField()
+    breadcrumbs = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_breadcrumbs(obj):
+        return str(Subcategory.objects.select_related('category').get(id=obj.subcategory_id)).split(', ')
 
     @staticmethod
     def get_product(obj):
@@ -60,17 +70,22 @@ class Subcat2Serializer(serializers.ModelSerializer):
         subcat3_list = []
         subcat3 = obj.subcat3_set.all()
         for i in subcat3:
-            subcat3_list.append(Subcat3Serializer(i).data)
+            subcat3_list.append([i.id, i.name, i.image_url])
         return subcat3_list
 
     class Meta:
         model = Subcat2
-        fields = ['id', 'name', 'image_url', 'product', 'subcat3']
+        fields = ['id', 'name', 'image_url', 'product', 'subcat3', 'breadcrumbs']
 
 
 class Subcat3Serializer(serializers.ModelSerializer):
     product = serializers.SerializerMethodField()
     subcat4 = serializers.SerializerMethodField()
+    breadcrumbs = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_breadcrumbs(obj):
+        return str(Subcat2.objects.select_related('subcategory').get(id=obj.subcat2_id)).split(', ')
 
     @staticmethod
     def get_product(obj):
@@ -85,16 +100,21 @@ class Subcat3Serializer(serializers.ModelSerializer):
         subcat4_list = []
         subcat4 = obj.subcat4_set.all()
         for i in subcat4:
-            subcat4_list.append(Subcat4Serializer(i).data)
+            subcat4_list.append([i.id, i.name, i.image_url])
         return subcat4_list
 
     class Meta:
         model = Subcat3
-        fields = ['id', 'name', 'image_url', 'product', 'subcat4']
+        fields = ['id', 'name', 'image_url', 'product', 'subcat4', 'breadcrumbs']
 
 
 class Subcat4Serializer(serializers.ModelSerializer):
     product = serializers.SerializerMethodField()
+    breadcrumbs = serializers.SerializerMethodField()
+
+    @staticmethod
+    def get_breadcrumbs(obj):
+        return str(Subcat3.objects.select_related('subcat2').get(id=obj.subcat3_id)).split(', ')
 
     @staticmethod
     def get_product(obj):
@@ -106,7 +126,7 @@ class Subcat4Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Subcat4
-        fields = ['id', 'name', 'image_url', 'product']
+        fields = ['id', 'name', 'image_url', 'product', 'breadcrumbs']
 
 
 class ProductSerializer(serializers.ModelSerializer):

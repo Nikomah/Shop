@@ -8,24 +8,41 @@
   .mat-card-title a:hover {
   text-decoration: underline;
   }
+  #breadcrumbs a {
+  color: #B8860B;
+  }
+  #breadcrumbs {
+  font-size: 16px;
+  }
+
 </style>
+<div fxLayout="column" >
+  <div>
+    <span id="breadcrumbs">
+      <a href="/catalog">Главная »</a><i> {{ subcategoryList.name }}</i>
+    </span>
+  </div>
+ <div style="font-size:18px; background:rgb(120, 156, 107); color: white; ">
+   <p style="margin: 10px;">{{ subcategoryList.name }}</p>
+ </div>
 
-<div id="app-center2"
-     fxFlex="100"
-     fxLayout="row wrap"
-     fxLayoutGap="10px"
-     fxLayoutAlign="left start">
 
-  <mat-card class="example-card" *ngFor="let item of subcategoryList.subcategory">
-    <mat-card-header style="height: 60px;">
-      <div mat-card-avatar class="example-header-image" style="width: 200px;">
-        <mat-card-title >
-          <a [routerLink]="['/catalog/prod', item.id]">{{ item.name }}</a>
-        </mat-card-title>
-      </div>
-    </mat-card-header>
-    <img src="{{ item.image_url }}"/>
-  </mat-card>
+  <div id="app-center2"
+       fxFlex="100"
+       fxLayout="row wrap"
+       fxLayoutGap="10px"
+       fxLayoutAlign="left start">
 
+    <mat-card class="example-card" *ngFor="let item of subcategoryList.subcategory">
+      <mat-card-header style="height: 60px;">
+        <div mat-card-avatar class="example-header-image" style="width: 200px;">
+          <mat-card-title >
+            <a [routerLink]="['/catalog/prod', item[1]]">{{ item[0] }}</a>
+          </mat-card-title>
+        </div>
+      </mat-card-header>
+      <a [routerLink]="['/catalog/prod', item[1]]"><img src="{{ item[2] }}"/></a>
+    </mat-card>
+
+  </div>
 </div>
-

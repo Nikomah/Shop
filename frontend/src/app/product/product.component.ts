@@ -14,7 +14,8 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
   ) {
       this.route.params.subscribe(params => {
       this.getProductList({prod: params['prodId']})
