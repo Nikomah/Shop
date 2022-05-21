@@ -1,114 +1,35 @@
 
-<style>
-  .content {
-    display: flex;
-    margin: 100px auto 32px;
-    padding: 0 16px;
-    max-width: 1200px;
-    flex-direction: row;
-    fxLayout="row wrap";
-    fxLayoutGap="10px";
-    align-items: center start;
-  }
+  <div [ngSwitch]="list">
+    <div class="content2" *ngSwitchCase="'category'">
 
-  a,
-  a:visited,
-  a:hover {
-    color: #B8860B;
-    text-decoration: none;
-    font-size: 22px;
-  }
-  .mat-card-content a {
-  font-size: 12px;
-  color: #808080;
-  text-decoration: underline;
-  }
-
-  .mat-card-content a:hover {
-  color: #b8860b;
-  }
-  .mat-card-title a {
-  color: #668abe;
-  }
-  .mat-card-title a:hover {
-  text-decoration: underline;
-  }
-
-  a:hover {
-    color: #8B4513;
-  }
-
-  footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-  }
-
-  footer a {
-    display: flex;
-    align-items: center;
-  }
+      <div class="name">
+        <p>Каталог продукции</p>
+      </div>
 
 
-
-</style>
-
-<div class="content" role="main">
-
-
-            <div id="sidebar" style="padding: 10px; min-width: 300px; max-width: 300px;">
-              <ul class="side" *ngFor="let category of categoryList" >
-                <li><a [routerLink]="['/catalog/cat', category.id]">{{ category.name }}</a></li>
-              </ul>
+      <div id="app-center">
+        <mat-card class="example-card" *ngFor="let category of categoryList">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <mat-card-title>
+                <a [routerLink]="['/catalog/cat', category.id]">{{ category.name | uppercase }}</a>
+              </mat-card-title>
             </div>
+          </mat-card-header>
 
-            <div [ngSwitch]="list">
-              <div
-              fxLayout="column"
-              *ngSwitchCase="'category'">
+          <a [routerLink]="['/catalog/cat', category.id]"><img src="{{ category.image_url }}"/></a>
 
+          <mat-card-content>
+            <span *ngFor="let sub of category.subcategory">
+              <a [routerLink]="['/catalog/prod', sub[1]]">{{ sub[0] }}, </a></span>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
 
-                <div style="font-size:18px; background:rgb(120, 156, 107); color: white; ">
-                  <p style="margin: 10px;">Каталог продукции</p>
-                </div>
-
-
-                  <div id="app-center"
-
-                   fxFlex="100"
-                   fxLayout="row wrap"
-                   fxLayoutGap="10px"
-                   fxLayoutAlign="left start">
-
-                      <mat-card class="example-card" *ngFor="let category of categoryList">
-                        <mat-card-header style="height: 60px;">
-                          <div mat-card-avatar class="example-header-image" style="width: 100px;">
-                            <mat-card-title>
-                              <a [routerLink]="['/catalog/cat', category.id]">{{ category.name }}</a>
-                            </mat-card-title>
-                          </div>
-                        </mat-card-header>
-
-                        <a [routerLink]="['/catalog/cat', category.id]"><img src="{{ category.image_url }}"/></a>
-
-                        <mat-card-content class="mat-card-content" style="width: 250px; height: 150px;">
-                          <span *ngFor="let sub of category.subcategory">
-                            <a [routerLink]="['/catalog/prod', sub[1]]">{{ sub[0] }}, </a></span>
-                        </mat-card-content>
-
-                      </mat-card>
-                  </div>
-
-              </div>
-              <app-subcategory *ngSwitchCase="'subcategory'"></app-subcategory>
-              <app-product *ngSwitchCase="'product'"></app-product>
-              <app-subcat2 *ngSwitchCase="'subcat2'"></app-subcat2>
-              <app-subcat3 *ngSwitchCase="'subcat3'"></app-subcat3>
-              <app-subcat4 *ngSwitchCase="'subcat4'"></app-subcat4>
-
-
-            </div>
-
-
-</div>
+    <app-subcategory *ngSwitchCase="'subcategory'"></app-subcategory>
+    <app-product *ngSwitchCase="'product'"></app-product>
+    <app-subcat2 *ngSwitchCase="'subcat2'"></app-subcat2>
+    <app-subcat3 *ngSwitchCase="'subcat3'"></app-subcat3>
+    <app-subcat4 *ngSwitchCase="'subcat4'"></app-subcat4>
+  </div>

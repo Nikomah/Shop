@@ -2,6 +2,7 @@ from django.urls import path, include
 
 from rest_framework import routers
 
+from store.views.basket import BasketView
 from store.views.category import CategoryViewSet
 from store.views.product import ProductViewSet
 from store.views.subcat2 import Subcat2ViewSet
@@ -21,4 +22,5 @@ router.register(r'product', ProductViewSet, basename='product')
 
 urlpatterns = [
     path('api/v1/', include(router.urls)),
+    path('api/v1/basket', BasketView.as_view(), name='basket'),
 ]

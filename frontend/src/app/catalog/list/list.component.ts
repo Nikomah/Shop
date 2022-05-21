@@ -7,36 +7,10 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-// export class ListComponent implements OnInit {
-//     categoryList: any = {results: []};
-//     constructor(
-//     private apiService: ApiService,
-//     private route: ActivatedRoute
-//     ) {
-//     this.route.params.subscribe(params => {
-//         if(params.hasOwnProperty('catId')) {
-//           this.getCategoryList({cat: params['catId']});
-//         } else {
-//             this.getCategoryList({});
-//         }
-//       } )
-//
-//      }
-//
-//   ngOnInit(): void {
-//   }
-//
-//   getCategoryList(pars: any) {
-//    this.apiService.getCategoryList(pars).subscribe((res: any) => {
-//     this.categoryList = res;
-//     });
-//   }
-// }
-
 
 export class ListComponent implements OnInit {
     categoryList: any = [];
-    list = 'category'
+    list = 'category';
     constructor(
     private apiService: ApiService,
     private route: ActivatedRoute

@@ -2,6 +2,10 @@ from rest_framework import serializers
 from .models import Product, Category, Subcategory, Subcat2, Subcat3, Subcat4
 
 
+class BasketSerializer(serializers.Serializer):
+    ids = serializers.ListField(child=serializers.IntegerField(min_value=1))
+
+
 class CategorySerializer(serializers.ModelSerializer):
     subcategory = serializers.SerializerMethodField()
 

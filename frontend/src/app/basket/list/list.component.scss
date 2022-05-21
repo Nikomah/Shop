@@ -1,0 +1,57 @@
+.content {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  }
+.name {
+  margin-bottom: 5px;
+  font-size:18px;
+  background:rgb(120, 156, 107);
+  color: white;
+  }
+p {
+  margin: 10px;
+  }
+.name::before {
+  position: relative;
+  float: left;
+  bottom: -39px;
+  left: 15px;
+  content: "";
+  background: url(../../../assets/sprite.png);
+  background-position-x: -20px;
+  background-position-y: -20px;
+  height: 8px;
+  width: 15px;
+  }
+.example-card {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin-top: 7px;
+  }
+.mat-card-content a {
+  font-size: 16px;
+  color: black;
+  text-decoration: underline;
+  }
+.mat-card-content a:hover {
+  color: #b8860b;
+  }
+.mat-card-title a {
+  color: #668abe;
+  }
+.mat-card-title a:hover {
+  text-decoration: underline;
+  }
+.count {
+  font-size: 24px;
+  font-weight: 400;
+}
+.summary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 22px;
+  font-weight: 400;
+}

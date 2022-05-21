@@ -1,11 +1,92 @@
-  <div>
-    <button mat-stroked-button [routerLink]="'profile'" color="primary">Profile</button>
-    <button mat-stroked-button [routerLink]="'basket'" color="accent">Basket</button>
-    <button mat-stroked-button [routerLink]="'catalog'"color="warn">Catalog</button>
+<style>
+</style>
+<div style="height: 4px; wight: 100%; background-color: #789C6B;"></div>
+<header>
+  <div class="left">
+    <div class="tel" style="padding-top: 15px;">
+      <span style="font-size: 18px; color: DimGrey; ">Телефон: </span>
+      <span style="font-size: 20px; color: Indigo">8 (985) 241 - 01 - 16</span>
+    </div>
+    <div style="height: 2px; background-color: green; margin-top: 20px;"></div>
+    <div class="menu" style="padding-top: 15px;">
+      <a [routerLink]="'catalog'">Каталог &nbsp;</a>
+      <a href="#">&nbsp;&nbsp; О компании &nbsp;&nbsp;</a>&nbsp;&nbsp;
+      <a href="#">&nbsp;&nbsp; Оплата и доставка &nbsp;&nbsp;</a>
+      <a href="#">&nbsp;&nbsp; Контакты</a>
+    </div>
   </div>
-    <router-outlet></router-outlet>
+
+  <div class="middle">
+    <a href="/catalog"><img src="../assets/leaf-logo-.png" title="logo"></a>
+  </div>
+
+  <div class="right">
+    <div style="padding-top: 8px;">
+    <button mat-stroked-button [routerLink]="'profile'" color="primary" style="width: 49%">Профиль</button>&nbsp;
+    <button
+      mat-stroked-button
+      [routerLink]="'basket'"
+      color="primary"
+      matBadge="{{ basket.length }}"
+      matBadgePosition="after"
+      matBadgeColor="accent"
+      style="width: 49%"
+    >
+      <mat-icon>add_shopping_cart</mat-icon>
+      Корзина
+    </button>
+    </div>
+    <div style="height: 2px; background-color: green; margin-top: 17px;"></div>
+    <div class="search">
+      <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput placeholder="Поиск по сайту" value="">
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</header>
 
 <div class="content" role="main">
 
+  <div id="sidebar">
+    <ul class="side" *ngFor="let category of categoryList" >
+      <li><a [routerLink]="['/catalog/cat', category.id]">&raquo; {{ category.name | uppercase }}</a></li>
+    </ul>
+  </div>
+
+  <div class="router">
+    <router-outlet></router-outlet>
+  </div>
 
 </div>
+
+<footer>
+  <div class="footer-content">
+    <div class="f-left">
+      <p>Телефон: 8 (985) 241 - 01 - 16</p>
+      <p>Телеграм: @Nikomah</p>
+      <p>Почта: d.nikomah@yandex.ru</p>
+    </div>
+    <div class="f-center">
+      <div><a href="https://facebook.com" target="_blank">
+        <img src="../assets/facebook.png" alt="facebook" title="facebook"></a></div> &nbsp;
+      <div><a href="https://vk.com" target="_blank">
+        <img src="../assets/vk.png" alt="ВКонтакте" title="ВКонтакте"></a></div> &nbsp;
+      <div><a href="https://instagram.com" target="_blank">
+        <img src="../assets/instagram.png" alt="Instagram" title="Instagram"></a></div> &nbsp;
+      <div><a href="https://whatsapp.com" target="_blank">
+        <img src="../assets/whatsapp.png" alt="whatsapp" title="whatsapp"></a></div> &nbsp;
+      <div><a href="https://telegram.com" target="_blank">
+        <img src="../assets/telegram.png" alt="telegram" title="telegram"></a></div> &nbsp;
+      <div><a href="https://youtube.com" target="_blank">
+        <img src="../assets/youtube.png" alt="youtube" title="youtube"></a></div>
+    </div>
+    <div class="f-right">
+      <a [routerLink]="'catalog'">Каталог &nbsp;</a>
+      <a href="#">&nbsp; О компании &nbsp;</a>
+      <a href="#">&nbsp; Оплата и доставка &nbsp;</a>
+      <a href="#">&nbsp; Контакты</a>
+    </div>
+  </div>
+</footer>

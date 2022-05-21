@@ -34,5 +34,10 @@ export class ApiService {
     return this.http.get(`${environment.backEndUrl}/api/v1/subcat4/${pars['subcat4']}/`)
     };
 
+  getBasket(pars: any) {
+    const data = {ids: pars};
+    return this.http.post(`${environment.backEndUrl}/api/v1/basket`, data)
+    };
+
 
 }

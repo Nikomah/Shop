@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../api.service';
 import { ActivatedRoute } from '@angular/router';
+import { BasketService } from './../basket/basket.service';
 
 
 @Component({
@@ -9,10 +10,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./subcat4.component.scss']
 })
 export class Subcat4Component implements OnInit {
-  productList: any = [];
+  productList: any = {
+    breadcrumbs: []
+  };
   isProd: boolean = true;
   constructor(
     private apiService: ApiService,
+    private basketService: BasketService,
     private route: ActivatedRoute
   ) {
       this.route.params.subscribe(params => {
@@ -25,8 +29,12 @@ export class Subcat4Component implements OnInit {
 
   getSubcat4(pars: any) {
     this.apiService.getSubcat4(pars).subscribe((res: any) => {
-    if (res.product.length != 0) {this.productList = res} else {this.isProd = false}
+    this.productList = res;
+    if (res.product.length === 0) {this.isProd = false};
 
     });
+  }
+  doAddToBasket(id: number) {
+    this.basketService.addToBasket(id);
   }
 }

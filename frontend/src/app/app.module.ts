@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FlexLayoutModule} from "@angular/flex-layout";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BasketService } from './basket/basket.service';
 
 
 
@@ -18,13 +22,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    FlexLayoutModule,
     MatCardModule,
     MatButtonModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatInputModule,
     BrowserAnimationsModule,
 
   ],
-  providers: [],
+  providers: [BasketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

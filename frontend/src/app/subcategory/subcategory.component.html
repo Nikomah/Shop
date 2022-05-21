@@ -1,42 +1,20 @@
-<style>
-  .mat-card-content a:hover {
-  color: #b8860b;
-  }
-  .mat-card-title a {
-  color: #668abe;
-  }
-  .mat-card-title a:hover {
-  text-decoration: underline;
-  }
-  #breadcrumbs a {
-  color: #B8860B;
-  }
-  #breadcrumbs {
-  font-size: 16px;
-  }
-
-</style>
-<div fxLayout="column" >
+<div class="content">
   <div>
     <span id="breadcrumbs">
       <a href="/catalog">Главная »</a><i> {{ subcategoryList.name }}</i>
     </span>
   </div>
- <div style="font-size:18px; background:rgb(120, 156, 107); color: white; ">
-   <p style="margin: 10px;">{{ subcategoryList.name }}</p>
- </div>
+  <div style="font-size:18px; background:rgb(120, 156, 107); color: white; box-shadow: 0 3px 2px gray;">
+    <p style="margin: 10px;">{{ subcategoryList.name }}</p>
+  </div>
 
 
-  <div id="app-center2"
-       fxFlex="100"
-       fxLayout="row wrap"
-       fxLayoutGap="10px"
-       fxLayoutAlign="left start">
+  <div id="app-center">
 
     <mat-card class="example-card" *ngFor="let item of subcategoryList.subcategory">
       <mat-card-header style="height: 60px;">
-        <div mat-card-avatar class="example-header-image" style="width: 200px;">
-          <mat-card-title >
+        <div mat-card-avatar class="example-header-image" >
+          <mat-card-title style="width: 200px;">
             <a [routerLink]="['/catalog/prod', item[1]]">{{ item[0] }}</a>
           </mat-card-title>
         </div>
